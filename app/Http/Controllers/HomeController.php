@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends ApiController
 {
     /**
      * Create a new controller instance.
@@ -24,5 +24,18 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function pusherTest()
+    {
+        return view('pusher-test');
+        $this->push('cp-sn999944', 'cell-2');
+    }
+
+    public function triggerPusher($cell_no)
+    {
+        $this->push('cp-sn999944', 'cell-'.$cell_no);
+
+        return back();
     }
 }
