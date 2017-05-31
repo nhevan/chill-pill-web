@@ -26,15 +26,14 @@ class HomeController extends ApiController
         return view('home');
     }
 
-    public function pusherTest()
+    public function viewControlls()
     {
         return view('pusher-test');
-        $this->push('cp-sn999944', 'cell-2');
     }
 
     public function triggerPusher($cell_no)
     {
-        $this->push('cp-sn999944', 'cell-'.$cell_no);
+        $this->push('cp-sn999944', $cell_no);
 
         return back();
     }

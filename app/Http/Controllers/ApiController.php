@@ -17,8 +17,7 @@ class ApiController extends Controller
             $options
           );
 
-        $data['message'] = $cell_no;
+        $data['cell'] = $cell_no;
         $pusher->trigger('my-channel', 'my-event', $data);
 	}
 }
-
