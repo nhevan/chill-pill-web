@@ -18,5 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test-pusher', 'HomeController@viewControlls')->name('viewControlls');
+Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');
 Route::get('/trigger-pusher/{cell}', 'HomeController@triggerPusher')->name('triggerPusher');

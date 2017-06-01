@@ -26,7 +26,7 @@ class HomeController extends ApiController
         return view('home');
     }
 
-    public function viewControlls()
+    public function viewControls()
     {
         return view('pusher-test');
     }
