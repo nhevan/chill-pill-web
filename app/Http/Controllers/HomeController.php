@@ -35,11 +35,32 @@ class HomeController extends ApiController
     {
         $pin_no = 0;
         switch ($cell_no) {
+            case 1:
+                $pin_no = 32;
+                break;
+            case 2:
+                $pin_no = 22;
+                break;
+            case 3:
+                $pin_no = 15;
+                break;
+            case 4:
+                $pin_no = 13;
+                break;
+            case 5:
+                $pin_no = 11;
+                break;
+            case 6:
+                $pin_no = 18;
+                break;
             case 7:
                 $pin_no = 7;
                 break;
             case 8:
                 $pin_no = 8;
+                break;
+            case 9:
+                $pin_no = 16;
                 break;
         }
         $this->push('cp-sn999944', $cell_no, $pin_no);
