@@ -33,7 +33,16 @@ class HomeController extends ApiController
 
     public function triggerPusher($cell_no)
     {
-        $this->push('cp-sn999944', $cell_no);
+        $pin_no = 0;
+        switch ($cell_no) {
+            case 7:
+                $pin_no = 7;
+                break;
+            case 8:
+                $pin_no = 8;
+                break;
+        }
+        $this->push('cp-sn999944', $cell_no, $pin_no);
 
         return back();
     }

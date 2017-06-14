@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class ApiController extends Controller
 {
-	public function push($box_serial_no, $cell_no)
+	public function push($box_serial_no, $cell_no, $pin_no)
 	{
 		$options = array(
             'cluster' => 'ap1',
@@ -18,6 +18,7 @@ class ApiController extends Controller
           );
 
         $data['cell'] = $cell_no;
+        $data['pin'] = $pin_no;
         $pusher->trigger('my-channel', 'my-event', $data);
 	}
 }
