@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 class ApiController extends Controller
 {
-	public function push($box_serial_no, $cell_no, $pin_no)
+	public function pushToPin($box_serial_no, $cell_no, $pin_no)
 	{
-		$options = array(
+        $data['cell'] = $cell_no;
+        $data['pin'] = $pin_no;
+
+        $this->push('my-channel', 'my-event', $data);
+	}
+
+    public function push($channel, $event, $data)
+    {
+        $options = array(
             'cluster' => 'ap1',
             'encrypted' => true
           );
@@ -17,8 +25,16 @@ class ApiController extends Controller
             $options
           );
 
-        $data['cell'] = $cell_no;
-        $data['pin'] = $pin_no;
-        $pusher->trigger('my-channel', 'my-event', $data);
-	}
+        $pusher->trigger($channel, $event, $data);
+    }
+
+    public function getCurrentDose()
+    {
+        $data['type'] = "Current Dose";
+        $data['message'] = "Current dose from server -server";
+
+        $this->push('my-channel', 'my-event', $data);
+
+        return response()->json([$data]);
+    }
 }

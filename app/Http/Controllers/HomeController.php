@@ -63,7 +63,7 @@ class HomeController extends ApiController
                 $pin_no = 16;
                 break;
         }
-        $this->push('cp-sn999944', $cell_no, $pin_no);
+        $this->pushToPin('cp-sn999944', $cell_no, $pin_no);
 
         return back();
     }
