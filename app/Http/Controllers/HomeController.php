@@ -79,7 +79,7 @@ class HomeController extends ApiController
         $this->setNodeSchedule($request['cron_minute']. " * * * *");
         $this->setTemporaryCellValues($request);
 
-        return response()->json($request);
+        return back();
     }
 
     public function setTemporaryCellValues(Request $request)
