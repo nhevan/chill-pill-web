@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');
+Route::get('/test-dose', 'HomeController@testDose')->name('testDose');
+Route::post('/setup-test-pins', 'HomeController@setupTestPins')->name('setupTestPins');
 Route::get('/trigger-pusher/{cell}', 'HomeController@triggerPusher')->name('triggerPusher');
