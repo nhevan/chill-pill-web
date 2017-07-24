@@ -5,6 +5,9 @@
 // Variables
 @import "variables";
 
+//helper definations
+@import "_helpers";
+
 // Bootstrap
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
@@ -13,4 +16,12 @@
 
 nav{
 	box-shadow: none;
+}
+html, body {
+    background-color: #242b2e;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    height: 100vh;
+    margin: 0;
 }

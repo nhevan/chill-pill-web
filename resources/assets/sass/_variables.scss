@@ -37,8 +37,8 @@ $input-color-placeholder: lighten($text-color, 30%);
 // Panels
 $panel-default-heading-bg: #fff;
 
-$primary-color: #3097D1 !default;
-$primary-color-light: false !default;
+$primary-color: #00c860 !default;
+$primary-color-light: true !default;
 $primary-color-dark: false !default;
 @if not $primary-color-light {
 	$primary-color-light: lighten($primary-color, 15%);
@@ -46,7 +46,7 @@ $primary-color-dark: false !default;
 @if not $primary-color-dark {
 	$primary-color-dark: darken($primary-color, 15%);
 }
-$secondary-color: #3097D1 !default;
+$secondary-color: #00c860 !default;
 $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 
