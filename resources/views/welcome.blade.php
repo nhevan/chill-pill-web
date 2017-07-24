@@ -7,14 +7,20 @@
 
         <title>Chill Pill</title>
 
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-color: #00b4d0;
+                color: white;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -46,11 +52,11 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 50px;
             }
 
             .links > a {
-                color: #636b6f;
+                color: white;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -62,11 +68,39 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            
+            .input-field .select-wrapper .caret{
+                color: white;
+            }
+            .input-field .select-wrapper .select-dropdown{
+                border-bottom: 1px solid white;
+            }
+            /* label color */
+           .input-field label {
+             color: white;
+           }
+           /* label focus color */
+           .input-field input[type=text]:focus + label {
+             color: #000;
+           }
+           input[type=text]:not(.browser-default){
+                border-bottom: 1px solid white;
+           }
+           input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]){
+                border-bottom: 1px solid #de446a;
+           }
+           input[type=text]:not(.browser-default):focus:not([readonly])+label, input[type=password]:not(.browser-default):focus:not([readonly])+label{
+            color: #fffcf7;
+           }
+           input[type=text].valid:not(.browser-default), input[type=password].valid:not(.browser-default){
+                border-bottom: 1px solid white;
+           }
+        }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            {{-- @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
@@ -75,13 +109,46 @@
                         <a href="{{ url('/register') }}">Register</a>
                     @endif
                 </div>
-            @endif
+            @endif --}}
+            <div class="container">
+                <div class="row">
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Chill Pill
+                    <div class="input-field col s12">
+                        <div class="content">
+                            <img src="images/chill-pill-logo-1.png" style="width:100px">
+                            <div class="title m-b-md">
+                                Chill Pill
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-field col s6 offset-s3">
+                        <select>
+                            <option value="" disabled selected required>Choose user type</option>
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Doctor</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s6 offset-s3">
+                        <input id="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                    </div>
+
+                    <div class="input-field col s6 offset-s3">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('select').material_select();
+            });
+        </script>
     </body>
 </html>
