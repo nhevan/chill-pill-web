@@ -25,5 +25,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('select').material_select();
+        });
+        $('.timepicker.set-trigger-minute-time-picker').pickatime({
+            default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+            twelvehour: true, // Use AM/PM or 24-hour format
+            donetext: 'Ok', // text for done-button
+            cleartext: 'Clear', // text for clear-button
+            canceltext: 'Cancel', // Text for cancel-button
+            autoclose: true, // automatic close timepicker
+            aftershow: function(){} //Function for after opening timepicker
+          });
+    </script>
 </body>
 </html>

@@ -76,7 +76,9 @@ class HomeController extends ApiController
 
     public function setupTestPins(Request $request)
     {
-        $this->setNodeSchedule($request['cron_minute']. " * * * *");
+        $cron_minute = (int) substr($request['cron_minute'], 3, 2);
+        
+        $this->setNodeSchedule($cron_minute. " * * * *");
         $this->setTemporaryCellValues($request);
 
         return back();
