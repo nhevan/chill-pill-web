@@ -78,10 +78,22 @@ class HomeController extends ApiController
     {
         $cron_minute = (int) substr($request['cron_minute'], 3, 2);
         
+        $differenceInSeconds = $this->getTimeDiffInSeconds($request['cron_minute']);
+
         $this->setNodeSchedule($cron_minute. " * * * *");
         $this->setTemporaryCellValues($request);
 
-        return back();
+        return view('countdown', ['target_time' => $request['cron_minute'], 'differenceInSeconds' => $differenceInSeconds - 2]);
+    }
+
+    public function getTimeDiffInSeconds($alarm_time)
+    {
+        date_default_timezone_set('Asia/Dhaka');
+
+        $alarm_time  = strtotime($alarm_time);
+        $current_time = strtotime('now');
+
+        return $alarm_time - $current_time;
     }
 
     public function setTemporaryCellValues(Request $request)
