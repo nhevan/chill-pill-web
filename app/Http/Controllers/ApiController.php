@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\TestPin;
+
 class ApiController extends Controller
 {
 	public function pushToPin($box_serial_no, $cell_no, $pin_no)
@@ -32,6 +34,18 @@ class ApiController extends Controller
     {
         $data['type'] = "Current Dose";
         $data['message'] = "Current dose from server -server";
+
+        $tmp_pins = TestPin::find(1);
+
+        $data['cell1'] = $tmp_pins->pin1;
+        $data['cell2'] = $tmp_pins->pin2;
+        $data['cell3'] = $tmp_pins->pin3;
+        $data['cell4'] = $tmp_pins->pin4;
+        $data['cell5'] = $tmp_pins->pin5;
+        $data['cell6'] = $tmp_pins->pin6;
+        $data['cell7'] = $tmp_pins->pin7;
+        $data['cell8'] = $tmp_pins->pin8;
+        $data['cell9'] = $tmp_pins->pin9;
 
         $this->push('my-channel', 'my-event', $data);
 
