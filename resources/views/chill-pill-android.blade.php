@@ -1,7 +1,7 @@
 @extends('layouts.fullscreen')
 
 @section('content')
-<div class="container">
+<div class="container full-height">
     <div class="row">
         <div class="col s12">
             <div class="content">
@@ -12,35 +12,38 @@
                 <br>
                 <br>
 					      <div class="row">
-							    <form class="col s12">
-							    	<div class="row">
-							    		<div class="switch">
-										    <label>
-										      Doctor
-										      <input type="checkbox">
-										      <span class="lever"></span>
-										      Patient
-										    </label>
-										  </div>
-							    	</div>
+							    <form class="col s12" role="form" method="POST" action="{{ route('login') }}" style="margin-bottom: 10px;">
+							    {{ csrf_field() }}
 							      <div class="row">
 							        <div class="input-field col s8 offset-s2">
-							          <input placeholder="Please enter you username" id="first_name" type="text" class="validate">
+							          <input id="email" class="validate" type="email" name="email" value="{{ old('email') }}" required>
 							          <label for="first_name">Username</label>
 							        </div>
-							      </div>
-							      <div class="row">
+							      
 							        <div class="input-field col s8 offset-s2">
-							          <input id="password" type="password" class="validate">
+							          <input class="validate" id="password" type="password" name="password" required>
 							          <label for="password">Password</label>
 							        </div>
+
+							        <p class="center-align">
+									      <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} />
+									      <label for="remember">Please keep me logged in</label>
+									    </p>
+									    @if ($errors->has('email'))
+                        <p class="help-block center-align">
+                          <strong>{{ $errors->first('email') }}</strong>
+                        </p>
+                      @endif
+
 							      </div>
 							      
-										<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+										<button class="btn waves-effect waves-light" type="submit" name="action">Login
 									    <i class="material-icons right">send</i>
 									  </button>
-
 							    </form>
+									<hr>
+									<p>No account yet? <a href="{{ url('/register') }}">Create One</a></p>
+							    
 							  </div>
             </div>
         </div>
