@@ -12,38 +12,7 @@
                 <br>
                 <br>
 					      <div class="row">
-							    <form class="col s12" role="form" method="POST" action="{{ route('login') }}" style="margin-bottom: 10px;">
-							    {{ csrf_field() }}
-							      <div class="row">
-							        <div class="input-field col s8 offset-s2">
-							          <input id="email" class="validate" type="email" name="email" value="{{ old('email') }}" required>
-							          <label for="first_name">Username</label>
-							        </div>
-							      
-							        <div class="input-field col s8 offset-s2">
-							          <input class="validate" id="password" type="password" name="password" required>
-							          <label for="password">Password</label>
-							        </div>
-
-							        <p class="center-align">
-									      <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }} />
-									      <label for="remember">Please keep me logged in</label>
-									    </p>
-									    @if ($errors->has('email'))
-                        <p class="help-block center-align">
-                          <strong>{{ $errors->first('email') }}</strong>
-                        </p>
-                      @endif
-
-							      </div>
-							      
-										<button class="btn waves-effect waves-light" type="submit" name="action">Login
-									    <i class="material-icons right">send</i>
-									  </button>
-							    </form>
-									<hr>
-									<p>No account yet? <a href="{{ url('/register') }}">Create One</a></p>
-							    
+							    <h3>This is your upcoming profile screen</h3>
 							  </div>
             </div>
         </div>

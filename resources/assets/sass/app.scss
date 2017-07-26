@@ -1,6 +1,7 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import "node_modules/font-awesome/scss/font-awesome.scss";
 
 // Variables
 @import "variables";
@@ -18,7 +19,7 @@ nav{
 	box-shadow: none;
 }
 html, body {
-    background-color: #242b2e;
+    background-color: $background-color;
     color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
