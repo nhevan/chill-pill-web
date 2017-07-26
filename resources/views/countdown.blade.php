@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container full-height valign-wrapper">
 		<div class="row">
-			<div class="col s12">
+			<div class="col s12" style="margin-bottom: 50px;">
 				<h3>Countdown timer</h3>
 				<p> Alarm set for {{ $target_time }} </p>
 				<span id="timer"></span>
@@ -13,8 +13,6 @@
 			</div>
 		</div>
 	</div>
-
-
 @endsection
 
 @push('scripts')
