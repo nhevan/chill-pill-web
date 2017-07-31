@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\PatientMetadata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -108,6 +117,16 @@ class UsersController extends Controller
      */
     public function patientSignUp(Request $request)
     {
-        # code...
+        $request->merge(['user_type_id' => 1, 'password' => bcrypt($request->password)] );
+        $user = $this->user->create($request->all());
+
+        $patient = New PatientMetadata;
+        $patient->emergency_contact_email = $request->emergency_contact_email;
+        $patient->box_serial = $request->box_serial;
+        $user->patient()->save($patient);
+
+        if (Auth::loginUsingId($user->id)) {
+            return redirect()->route('patient-dashboard');
+        }
     }
 }

@@ -15,11 +15,11 @@
 				<label for="password">Password</label>
 			</div>
 			<div class="input-field col s12">
-				<input id="emergency-email" class="validate" type="text" name="" value="{{ old('emergency-email') }}" required>
+				<input id="emergency-email" class="validate" type="text" name="emergency_contact_email" value="{{ old('emergency_contact_email') }}" required>
 				<label for="emergency-email">Emergency Email</label>
 			</div>
 			<div class="input-field col s12">
-				<input id="box-serial" class="validate" type="text" name="" value="{{ old('box-serial') }}" required>
+				<input id="box-serial" class="validate" type="text" name="box_serial" value="{{ old('box_serial') }}" required>
 				<label for="box-serial">Box Serial No.</label>
 			</div>
 			@if ($errors->has('email'))

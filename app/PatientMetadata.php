@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class PatientMetadata extends Model
 {
-    protected $fillable = ['user_id'];
+    protected $guarded = ['user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }
