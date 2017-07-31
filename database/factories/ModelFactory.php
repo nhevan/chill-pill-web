@@ -20,5 +20,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'user_type_id' => function(){
+            return factory('App\UserType')->create()->id;
+        }
+    ];
+});
+
+$factory->define(App\UserType::class, function (Faker\Generator $faker) {
+    return [
+        'type' => $faker->name,
+        'description' => $faker->sentence(2)
     ];
 });
