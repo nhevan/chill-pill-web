@@ -32,6 +32,9 @@ Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard
 Route::middleware('auth')->get('/update-doctor-info', 'DoctorsController@showUpdateForm')->name('show-doctor-update-page');
 Route::middleware('auth')->get('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
 Route::middleware('auth')->post('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
+Route::middleware('auth')->get('/show-create-prescription/{patient}', 'DoctorsController@showCreatePrescription')->name('doctor.show-create-prescription');
+
+Route::middleware('auth')->post('/prescription/{patient}', 'PrescriptionsController@store')->name('prescription.new');
 
 
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Prescription;
+use App\PatientMetadata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PrescriptionsController extends Controller
 {
@@ -33,9 +35,16 @@ class PrescriptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatientMetadata $patient, Request $request)
     {
-        //
+        $prescription = new Prescription;
+        $prescription->current_symptoms = $request->current_symptoms;
+        // dd(Auth::user()->doctor->id);
+        $prescription->doctor_id = auth()->user()->doctor->id;
+
+        $patient->prescriptions()->save($prescription);
+        
+        return view('doctor.view-prescription', ['prescription' => $prescription]);
     }
 
     /**

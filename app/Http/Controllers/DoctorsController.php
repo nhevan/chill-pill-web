@@ -45,4 +45,9 @@ class DoctorsController extends Controller
     	
     	return view('doctor.patient-info', ['patient' => $patient]);
     }
+
+    public function showCreatePrescription(PatientMetadata $patient)
+    {
+        return view('doctor.new-prescription', ['patient_id' => $patient->id]);
+    }
 }

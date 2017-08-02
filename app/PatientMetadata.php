@@ -18,4 +18,9 @@ class PatientMetadata extends Model
     {
         return $this->hasMany('App\PatientCondition', 'patient_id');
     }
+
+	public function prescriptions()
+    {
+        return $this->hasMany('App\Prescription', 'patient_id');
+    }
 }

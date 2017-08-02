@@ -37,5 +37,8 @@
 	        </div>
 	      </div>
 	    </div>
+		
+		<a href="{{ route('doctor.show-create-prescription', [$patient->id]) }}" class="waves-effect waves-light btn"><i class="material-icons right">event_note</i>Prescribe</a>
+
 	</div>
 @endsection
