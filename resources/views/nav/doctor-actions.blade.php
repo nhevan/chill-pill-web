@@ -1,0 +1,1 @@
+<li><a href="{{ route('show-doctor-update-page') }}">Update Profile</a></li>
