@@ -30,6 +30,8 @@ Route::middleware('auth')->post('/update-patient-info', 'PatientsController@edit
 
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
 Route::middleware('auth')->get('/update-doctor-info', 'DoctorsController@showUpdateForm')->name('show-doctor-update-page');
+Route::middleware('auth')->get('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
+Route::middleware('auth')->post('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
 
 
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');

@@ -6,6 +6,7 @@
 @else
     <li class="dropdown">
         <a href="{{ route('dashboard') }}">
+            <i class="material-icons right">view_module</i>
             Dashboard
         </a>
     </li>
@@ -20,6 +21,7 @@
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
+            <i class="material-icons right">exit_to_app</i>
             Logout
         </a>
 
