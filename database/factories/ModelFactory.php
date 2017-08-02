@@ -73,3 +73,12 @@ $factory->define(App\Prescription::class, function (Faker\Generator $faker) {
         'current_symptoms' => $faker->sentence(20)
     ];
 });
+
+$factory->define(App\Medicine::class, function (Faker\Generator $faker) {
+    return [
+        'prescription_id' => function(){
+            return factory('App\Prescription')->create()->id;
+        },
+        'name' => $faker->name
+    ];
+});
