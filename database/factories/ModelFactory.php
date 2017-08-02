@@ -32,3 +32,22 @@ $factory->define(App\UserType::class, function (Faker\Generator $faker) {
         'description' => $faker->sentence(2)
     ];
 });
+
+$factory->define(App\PatientMetadata::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function(){
+            return factory('App\User')->create()->id;
+        },
+        'emergency_contact_email' => $faker->email,
+        'box_serial' => "CP".$faker->numberBetween($min = 1000, $max = 9000)
+    ];
+});
+
+$factory->define(App\PatientCondition::class, function (Faker\Generator $faker) {
+    return [
+        'patient_id' => function(){
+            return factory('App\PatientMetadata')->create()->id;
+        },
+        'condition' => $faker->sentence(5)
+    ];
+});

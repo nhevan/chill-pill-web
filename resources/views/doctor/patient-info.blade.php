@@ -28,8 +28,9 @@
 	        	<h5>Known Conditions</h5>
 	        	<hr>
 	        	<ul>
-					<li>- Alvin</li>
-					<li>- Alvin</li>
+					@foreach ($patient->conditions as $condition)
+						<li>- {{ $condition->condition }}</li>
+					@endforeach
 				</ul>
 	          <span class="white-text">
 	          </span>
