@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\PatientMetadata');
     }
+
+    public function doctor()
+    {
+        return $this->hasOne('App\DoctorMetadata');
+    }
 }

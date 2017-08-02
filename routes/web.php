@@ -22,6 +22,7 @@ Route::get('/signup', 'UsersController@signup')->name('signup');
 Route::post('/doctor-signup', 'UsersController@doctorSignUp')->name('doctorSignUp');
 Route::post('/patient-signup', 'UsersController@patientSignUp')->name('patientSignUp');
 Route::middleware('auth')->get('/patient-dashboard', 'PatientsController@dashboard')->name('patient-dashboard');
+Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\DoctorMetadata;
 use App\PatientMetadata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,17 @@ class UsersController extends Controller
      */
     public function doctorSignUp(Request $request)
     {
-        # code...
+        $request->merge(['user_type_id' => 2, 'password' => bcrypt($request->password)] );
+        $user = $this->user->create($request->all());
+
+        $doctor = New DoctorMetadata;
+        $doctor->speciality = $request->speciality;
+        $doctor->phone = $request->phone;
+        $user->doctor()->save($doctor);
+
+        if (Auth::loginUsingId($user->id)) {
+            return redirect()->route('doctor-dashboard');
+        }
     }
 
     /**
