@@ -19,6 +19,10 @@ class CreatePatientMetadatasTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->integer("age")->nullable();
+            $table->string("sex")->nullable();
+            $table->string("mobile")->nullable();
+            $table->string("emergency_contact_mobile")->nullable();
             $table->string("emergency_contact_email");
             $table->string("box_serial");
 
