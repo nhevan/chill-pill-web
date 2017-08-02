@@ -21,8 +21,8 @@ class CreateDoctorMetadatasTable extends Migration
 
             $table->string("phone");
             $table->string("speciality");
-            $table->string("hospital_name");
-            $table->string("address");
+            $table->string("hospital_name")->nullable();
+            $table->string("address")->nullable();
 
             $table->timestamps();
         });

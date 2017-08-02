@@ -159,4 +159,16 @@ class UsersController extends Controller
             ->withInput($request->only('email', 'remember'))
             ->withErrors(["email" => "Invalid credentials."]);
     }
+
+    /**
+     * returns the user to their appropriate dashboard
+     * @return [type] [description]
+     */
+    public function dashboard()
+    {
+        if (Auth::user()->user_type_id == 1) {
+            return redirect()->route('patient-dashboard');
+        }
+        return redirect()->route('doctor-dashboard');
+    }
 }

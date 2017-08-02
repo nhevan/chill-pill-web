@@ -5,8 +5,8 @@
     <li><a href="{{ route('register') }}">Register</a></li>
 @else
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {{ Auth::user()->name }} <span class="caret"></span>
+        <a href="{{ route('dashboard') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Dashboard <span class="caret"></span>
         </a>
 
         <ul class="dropdown-menu" role="menu">
@@ -23,4 +23,9 @@
             </li>
         </ul>
     </li>
+    @if (Auth::user()->user_type_id == 1)
+        <li><a href="{{ route('show-patient-update-page') }}">Update Profile</a></li>
+    @else
+        <li><a href="{{ route('show-doctor-update-page') }}">Update Profile</a></li>
+    @endif
 @endif

@@ -10,4 +10,9 @@ class PatientsController extends Controller
     {
     	return view('patient.dashboard');
     }
+
+    public function showUpdateForm(Request $request)
+    {
+    	return view("patient.update-form");
+    }
 }

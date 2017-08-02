@@ -19,10 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'UsersController@signup')->name('signup');
+Route::get('/dashboard', 'UsersController@dashboard')->name('dashboard');
 Route::post('/custom-login', 'UsersController@login')->name('custom-login');
 Route::post('/doctor-signup', 'UsersController@doctorSignUp')->name('doctorSignUp');
 Route::post('/patient-signup', 'UsersController@patientSignUp')->name('patientSignUp');
+
 Route::middleware('auth')->get('/patient-dashboard', 'PatientsController@dashboard')->name('patient-dashboard');
+Route::middleware('auth')->get('/update-patient-info', 'PatientsController@showUpdateForm')->name('show-patient-update-page');
+Route::middleware('auth')->post('/update-patient-info', 'PatientsController@edit')->name('update-patient');
+
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
 
 

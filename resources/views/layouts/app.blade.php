@@ -23,8 +23,9 @@
                 @include('materialize-nav')
             </div>
         </nav>
-
-        @yield('content')
+        <div style="padding: 20px;">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->

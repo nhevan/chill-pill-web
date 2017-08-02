@@ -1,4 +1,4 @@
-@extends('layouts.fullscreen')
+@extends('layouts.app')
 
 @section('content')
 	<h3>Hello, {{ $user->name }}</h3>
