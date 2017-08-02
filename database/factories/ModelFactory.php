@@ -43,11 +43,33 @@ $factory->define(App\PatientMetadata::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\DoctorMetadata::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function(){
+            return factory('App\User')->create()->id;
+        },
+        'phone' => $faker->phoneNumber,
+        'speciality' => $faker->sentence(2)
+    ];
+});
+
 $factory->define(App\PatientCondition::class, function (Faker\Generator $faker) {
     return [
         'patient_id' => function(){
             return factory('App\PatientMetadata')->create()->id;
         },
         'condition' => $faker->sentence(5)
+    ];
+});
+
+$factory->define(App\Prescription::class, function (Faker\Generator $faker) {
+    return [
+        'patient_id' => function(){
+            return factory('App\PatientMetadata')->create()->id;
+        },
+        'doctor_id' => function(){
+            return factory('App\DoctorMetadata')->create()->id;
+        },
+        'current_symptoms' => $faker->sentence(20)
     ];
 });
