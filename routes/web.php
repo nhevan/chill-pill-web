@@ -29,7 +29,7 @@ Route::middleware('auth')->get('/update-patient-info', 'PatientsController@showU
 Route::middleware('auth')->post('/update-patient-info', 'PatientsController@edit')->name('update-patient');
 
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
-
+Route::middleware('auth')->get('/update-doctor-info', 'DoctorsController@showUpdateForm')->name('show-doctor-update-page');
 
 
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');
