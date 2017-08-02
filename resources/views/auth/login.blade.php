@@ -12,7 +12,7 @@
                 <br>
                 <br>
                 <div class="row">
-                    <form class="col s12" role="form" method="POST" action="{{ route('login') }}" style="margin-bottom: 10px;">
+                    <form class="col s12" role="form" method="POST" action="{{ route('custom-login') }}" style="margin-bottom: 10px;">
                     {{ csrf_field() }}
                       <div class="row">
                         <div class="input-field col s8 offset-s2">

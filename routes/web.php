@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'UsersController@signup')->name('signup');
+Route::post('/custom-login', 'UsersController@login')->name('custom-login');
 Route::post('/doctor-signup', 'UsersController@doctorSignUp')->name('doctorSignUp');
 Route::post('/patient-signup', 'UsersController@patientSignUp')->name('patientSignUp');
 Route::middleware('auth')->get('/patient-dashboard', 'PatientsController@dashboard')->name('patient-dashboard');

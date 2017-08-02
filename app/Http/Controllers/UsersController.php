@@ -140,4 +140,23 @@ class UsersController extends Controller
             return redirect()->route('patient-dashboard');
         }
     }
+
+    /**
+     * custom login function for doctors and patients
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function login(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+            if (Auth::user()->user_type_id == 1) {
+                return redirect()->route('patient-dashboard');
+            }
+            return redirect()->route('doctor-dashboard');
+        }
+
+        return redirect()->back()
+            ->withInput($request->only('email', 'remember'))
+            ->withErrors(["email" => "Invalid credentials."]);
+    }
 }
