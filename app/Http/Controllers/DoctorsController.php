@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Prescription;
 use App\DoctorMetadata;
 use App\PatientMetadata;
 use Illuminate\Http\Request;
@@ -49,5 +50,12 @@ class DoctorsController extends Controller
     public function showCreatePrescription(PatientMetadata $patient)
     {
         return view('doctor.new-prescription', ['patient_id' => $patient->id]);
+    }
+
+    public function prescriptions()
+    {
+        $prescriptions = Prescription::where('doctor_id', Auth::user()->doctor->id)->get();
+
+        return view('prescriptions', ['prescriptions' => $prescriptions]);
     }
 }
