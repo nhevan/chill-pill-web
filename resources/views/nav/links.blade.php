@@ -1,4 +1,4 @@
-{{-- <li><a href="{{ route('viewControls') }}">Test Controls</a></li> --}}
+<li><a href="{{ route('testDose') }}">Test Dose</a></li>
 <!-- Authentication Links -->
 @if (Auth::guest())
     <li><a href="{{ route('login') }}">Login</a></li>

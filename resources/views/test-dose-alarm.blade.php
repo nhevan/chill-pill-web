@@ -1,7 +1,7 @@
-@extends('layouts.fullscreen')
+@extends('layouts.app')
 
 @section('content')
-<div class="container full-height valign-wrapper" style="padding-top:30px;">
+<div class="container center-align" style="padding-top:30px;">
     <div class="row">
         <h6>This activity is for demo purpose only</h6>
         <form action={{ route('setupTestPins') }} method="POST" role="form" class="text-center">
