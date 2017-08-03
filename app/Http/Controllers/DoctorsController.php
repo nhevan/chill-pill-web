@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use App\Prescription;
 use App\DoctorMetadata;
 use App\PatientMetadata;
@@ -89,5 +90,12 @@ class DoctorsController extends Controller
         $doctor->save();
 
         return redirect()->route('dashboard');
+    }
+
+    public function feedbacks()
+    {
+        $feedbacks = Feedback::where('doctor_id', Auth::user()->doctor->id)->get();
+        
+        return view('feedbacks', ['feedbacks' => $feedbacks]);
     }
 }

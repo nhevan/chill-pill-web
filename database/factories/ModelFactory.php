@@ -82,3 +82,15 @@ $factory->define(App\Medicine::class, function (Faker\Generator $faker) {
         'name' => $faker->name
     ];
 });
+
+$factory->define(App\Feedback::class, function (Faker\Generator $faker) {
+    return [
+        'patient_id' => function(){
+            return factory('App\PatientMetadata')->create()->id;
+        },
+        'doctor_id' => function(){
+            return factory('App\DoctorMetadata')->create()->id;
+        },
+        'feedback' => $faker->sentence(20)
+    ];
+});

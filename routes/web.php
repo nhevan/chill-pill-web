@@ -33,6 +33,7 @@ Route::middleware('auth')->get('/search-patient', 'DoctorsController@searchByBox
 Route::middleware('auth')->post('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
 Route::middleware('auth')->get('/show-create-prescription/{patient}', 'DoctorsController@showCreatePrescription')->name('doctor.show-create-prescription');
 Route::middleware('auth')->get('/doctor/prescriptions', 'DoctorsController@prescriptions')->name('doctor.prescriptions');
+Route::middleware('auth')->get('/doctor/feedbacks', 'DoctorsController@feedbacks')->name('doctor.feedbacks');
 
 Route::middleware('auth')->get('/prescription/{prescription}', 'PrescriptionsController@show')->name('prescription.show');
 Route::middleware('auth')->post('/prescription/{patient}', 'PrescriptionsController@store')->name('prescription.new');
