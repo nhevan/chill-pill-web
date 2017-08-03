@@ -37,6 +37,9 @@ Route::middleware('auth')->get('/show-create-prescription/{patient}', 'DoctorsCo
 Route::middleware('auth')->get('/prescription/{prescription}', 'PrescriptionsController@show')->name('prescription.show');
 Route::middleware('auth')->post('/prescription/{patient}', 'PrescriptionsController@store')->name('prescription.new');
 
+Route::middleware('auth')->get('/medicine/add/{prescription}', 'MedicinesController@create')->name('medicine.show-add');
+Route::middleware('auth')->post('/medicine/add/{prescription}', 'MedicinesController@store')->name('medicine.add');
+
 
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');
 Route::get('/test-dose', 'HomeController@testDose')->name('testDose');

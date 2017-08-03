@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medicine;
+use App\Prescription;
 use Illuminate\Http\Request;
 
 class MedicinesController extends Controller
@@ -22,9 +23,9 @@ class MedicinesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Prescription $prescription)
     {
-        //
+        return view('medicine.add-form', ['prescription' => $prescription]);
     }
 
     /**
@@ -33,9 +34,20 @@ class MedicinesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Prescription $prescription, Request $request)
     {
-        //
+        $medicine = new Medicine;
+        
+        $medicine->name = $request->name;
+        $medicine->duration = $request->duration;
+        if($request->is_after_meal) $medicine->is_after_meal = 1;
+        if($request->at_breakfast) $medicine->at_breakfast = 1;
+        if($request->at_lunch) $medicine->at_lunch = 1;
+        if($request->at_dinner) $medicine->at_dinner = 1;
+
+        $prescription->medicines()->save($medicine);
+        
+        return redirect()->route('prescription.show', [$prescription->id]);
     }
 
     /**
