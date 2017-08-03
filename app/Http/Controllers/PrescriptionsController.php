@@ -44,7 +44,7 @@ class PrescriptionsController extends Controller
 
         $patient->prescriptions()->save($prescription);
         
-        return view('doctor.view-prescription', ['prescription' => $prescription]);
+        return redirect()->route('prescription.show', [$prescription->id]);
     }
 
     /**
@@ -55,7 +55,7 @@ class PrescriptionsController extends Controller
      */
     public function show(Prescription $prescription)
     {
-        //
+        return view('doctor.view-prescription', ['prescription' => $prescription]);
     }
 
     /**
