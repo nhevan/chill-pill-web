@@ -1,7 +1,7 @@
-@extends('layouts.fullscreen')
+@extends('layouts.app')
 
 @section('content')
-<div class="container full-height">
+<div class="container center-align">
     <div class="row">
         <div class="col s12">
             <div class="content">
