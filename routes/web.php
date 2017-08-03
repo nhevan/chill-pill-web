@@ -27,7 +27,8 @@ Route::middleware('auth')->get('/update-patient-info', 'PatientsController@showU
 Route::middleware('auth')->post('/update-patient-info', 'PatientsController@edit')->name('update-patient');
 
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
-Route::middleware('auth')->get('/update-doctor-info', 'DoctorsController@showUpdateForm')->name('show-doctor-update-page');
+Route::middleware('auth')->get('/doctor/update/', 'DoctorsController@edit')->name('show-doctor-update-page');
+Route::middleware('auth')->post('/doctor/update/{doctor}', 'DoctorsController@update')->name('doctor.update');
 Route::middleware('auth')->get('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
 Route::middleware('auth')->post('/search-patient', 'DoctorsController@searchByBox')->name('doctor.search-by-box');
 Route::middleware('auth')->get('/show-create-prescription/{patient}', 'DoctorsController@showCreatePrescription')->name('doctor.show-create-prescription');

@@ -58,4 +58,36 @@ class DoctorsController extends Controller
 
         return view('prescriptions', ['prescriptions' => $prescriptions]);
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\DoctorMetadata  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        $doctor = DoctorMetadata::find(Auth::user()->doctor->id);
+
+        return view("doctor.update-form", ['doctor' => $doctor]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\DoctorMetadata  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, DoctorMetadata $doctor)
+    {
+        $doctor->speciality = $request->speciality;
+        $doctor->phone = $request->phone;
+        $doctor->hospital_name = $request->hospital_name;
+        $doctor->address = $request->address;
+
+        $doctor->save();
+
+        return redirect()->route('dashboard');
+    }
 }
