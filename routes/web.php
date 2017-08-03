@@ -11,15 +11,13 @@
 |
 */
 
-Route::middleware('auth')->get('/', function () {
-    return view('chill-pill-android');
-});
+Route::middleware('auth')->get('/', 'UsersController@dashboard')->name('dashboard');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/signup', 'UsersController@signup')->name('signup');
-Route::get('/dashboard', 'UsersController@dashboard')->name('dashboard');
+// Route::get('/dashboard', 'UsersController@dashboard')->name('dashboard');
 Route::post('/custom-login', 'UsersController@login')->name('custom-login');
 Route::post('/doctor-signup', 'UsersController@doctorSignUp')->name('doctorSignUp');
 Route::post('/patient-signup', 'UsersController@patientSignUp')->name('patientSignUp');
