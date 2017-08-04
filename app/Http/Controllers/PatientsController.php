@@ -17,6 +17,28 @@ class PatientsController extends Controller
 
     public function showUpdateForm(Request $request)
     {
-    	return view("patient.update-form");
+    	return view("patient.update-form", ['patient' => Auth::user()->patient]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\DoctorMetadata  $doctor
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+    	$patient = Auth::user()->patient;
+
+        $patient->age = $request->age;
+        $patient->sex = $request->sex;
+        $patient->mobile = $request->mobile;
+        $patient->emergency_contact_mobile = $request->emergency_contact_mobile;
+        $patient->emergency_contact_email = $request->emergency_contact_email;
+
+        $patient->save();
+
+        return redirect()->route('dashboard');
     }
 }

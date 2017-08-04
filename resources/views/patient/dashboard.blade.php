@@ -20,6 +20,6 @@
 	        </div>
 	      </div>
 	    </div>
-		@include('logout')
+	    <a href="{{ route('show-patient-update-page') }}" class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons right">mode_edit</i></a>
 	</div>
 @endsection
