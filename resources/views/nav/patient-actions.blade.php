@@ -1,1 +1,1 @@
-{{-- <li><a href="{{ route('show-patient-update-page') }}">Update Profile</a></li> --}}
+<li><a href="{{ route('patient.prescriptions') }}">Prescriptions<i class="material-icons right">assignment</i></a></li>

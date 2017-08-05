@@ -25,6 +25,7 @@ Route::post('/patient-signup', 'UsersController@patientSignUp')->name('patientSi
 Route::middleware('auth')->get('/patient-dashboard', 'PatientsController@dashboard')->name('patient-dashboard');
 Route::middleware('auth')->get('/update-patient-info', 'PatientsController@showUpdateForm')->name('show-patient-update-page');
 Route::middleware('auth')->post('/update-patient-info', 'PatientsController@update')->name('patient.update');
+Route::middleware('auth')->get('/my-prescriptions', 'PatientsController@prescriptions')->name('patient.prescriptions');
 
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
 Route::middleware('auth')->get('/doctor/update/', 'DoctorsController@edit')->name('show-doctor-update-page');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Prescription;
+use App\DoctorMetadata;
 use App\PatientMetadata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,5 +42,12 @@ class PatientsController extends Controller
         $patient->save();
 
         return redirect()->route('dashboard');
+    }
+
+    public function prescriptions()
+    {
+    	$prescriptions = Prescription::where('patient_id', Auth::user()->patient->id)->orderBy('created_at', 'DESC')->get();
+
+    	return view("patient.prescriptions", ['prescriptions' => $prescriptions]);
     }
 }
