@@ -39,7 +39,10 @@ $factory->define(App\PatientMetadata::class, function (Faker\Generator $faker) {
             return factory('App\User')->create()->id;
         },
         'emergency_contact_email' => $faker->email,
-        'box_serial' => "CP".$faker->numberBetween($min = 1000, $max = 9000)
+        'box_serial' => "CP".$faker->numberBetween($min = 1000, $max = 9000),
+        'breakfast_at' => $faker->time('H:i'),
+        'lunch_at' => $faker->time('H:i'),
+        'dinner_at' => $faker->time('H:i')
     ];
 });
 

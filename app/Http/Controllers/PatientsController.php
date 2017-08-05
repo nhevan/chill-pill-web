@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Prescription;
 use App\DoctorMetadata;
 use App\PatientMetadata;
@@ -38,7 +39,7 @@ class PatientsController extends Controller
         $patient->mobile = $request->mobile;
         $patient->emergency_contact_mobile = $request->emergency_contact_mobile;
         $patient->emergency_contact_email = $request->emergency_contact_email;
-
+dd($patient->toArray());
         $patient->save();
 
         return redirect()->route('dashboard');
@@ -49,5 +50,26 @@ class PatientsController extends Controller
     	$prescriptions = Prescription::where('patient_id', Auth::user()->patient->id)->orderBy('created_at', 'DESC')->get();
 
     	return view("patient.prescriptions", ['prescriptions' => $prescriptions]);
+    }
+
+    public function settings()
+    {
+    	return view('patient.settings', ['patient' => Auth::user()->patient]);
+    }
+
+    public function updateMealtime(Request $request)
+    {
+    	$request->merge([
+    		'breakfast_at' => Carbon::parse($request->breakfast_at)->format('H:i:s'),
+    		'lunch_at' => Carbon::parse($request->lunch_at)->format('H:i:s'),
+    		'dinner_at' => Carbon::parse($request->dinner_at)->format('H:i:s'),
+		]);
+
+		$patient = Auth::user()->patient;
+
+		$patient->fill($request->only('breakfast_at', 'lunch_at', 'dinner_at'));
+		$patient->save();
+
+		return back();
     }
 }
