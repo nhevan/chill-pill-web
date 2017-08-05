@@ -9,7 +9,7 @@ use App\PatientMetadata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PatientsController extends Controller
+class PatientsController extends ApiController
 {
     public function dashboard()
     {
@@ -39,7 +39,7 @@ class PatientsController extends Controller
         $patient->mobile = $request->mobile;
         $patient->emergency_contact_mobile = $request->emergency_contact_mobile;
         $patient->emergency_contact_email = $request->emergency_contact_email;
-dd($patient->toArray());
+
         $patient->save();
 
         return redirect()->route('dashboard');
@@ -59,17 +59,45 @@ dd($patient->toArray());
 
     public function updateMealtime(Request $request)
     {
-    	$request->merge([
+    	$meal_times = [
     		'breakfast_at' => Carbon::parse($request->breakfast_at)->format('H:i:s'),
     		'lunch_at' => Carbon::parse($request->lunch_at)->format('H:i:s'),
     		'dinner_at' => Carbon::parse($request->dinner_at)->format('H:i:s'),
-		]);
+		];
+    	$request->merge($meal_times);
 
 		$patient = Auth::user()->patient;
 
 		$patient->fill($request->only('breakfast_at', 'lunch_at', 'dinner_at'));
 		$patient->save();
+		$this->syncChillPillBox($meal_times);
 
 		return back();
+    }
+
+    public function syncChillPillBox($meal_times)
+    {
+    	foreach ($meal_times as $meal => $time) {
+    		$before_meal = Carbon::parse($time)->subMinutes(30)->format('H:i:s');
+    		$after_meal = Carbon::parse($time)->addMinutes(30)->format('H:i:s');
+
+    		$this->setMealSchedule($before_meal);
+    		$this->setMealSchedule($after_meal);
+    	}
+    }
+
+    public function setMealSchedule($meal_time)
+    {
+		$hour = (int) substr($meal_time, 0, 2);
+		$minute = (int) substr($meal_time, 3, 2);
+
+        $this->setNodeSchedule($minute. " ".$hour. " * * *");
+    }
+    public function setNodeSchedule($cron_formatted_time)
+    {
+        $data['type'] = 'sync';
+        $data['cron_formatted_schedule'] = $cron_formatted_time;
+
+        $this->push('my-channel', 'my-event', $data);
     }
 }

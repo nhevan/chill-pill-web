@@ -3,7 +3,7 @@
 @section('content')
 	<div class="center-align">
 		<div class="row">
-			<div class="col s12 m5">
+			<div class="col s12">
 				<div class="card-panel teal">
 					<h3>Meal Times</h3>
 					<ul class="white-text">
