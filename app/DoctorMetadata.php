@@ -12,4 +12,9 @@ class DoctorMetadata extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function feedbacks()
+    {
+    	return $this->hasMany('App\Feedback', 'doctor_id');
+    }
 }

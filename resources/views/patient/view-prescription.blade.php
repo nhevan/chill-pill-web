@@ -27,14 +27,12 @@
 	        	</ul>
 	        </div>
 	        @if (Auth::user()->user_type_id == 1)
-	        	<a href="" class="btn btn-small waves-effect waves-light red darken-2 modal-trigger"><i class="material-icons right">attachment</i>Send Feedback</a>
-	        @else
-		        <a href="#modal1" class="right btn-floating btn-small waves-effect waves-light red darken-2 modal-trigger" style="position: relative;top: -40px;left:15px"><i class="material-icons">add</i></a>
+	        	<a href="#modal1" class="btn btn-small waves-effect waves-light red darken-2 modal-trigger"><i class="material-icons right">attachment</i>Send Feedback</a>
 	        @endif
 
 			<div id="modal1" class="modal teal">
 				<div class="modal-content">
-					@include('medicine.add-form', ['prescription_id' => $prescription->id])
+					@include('feedback.add-form', ['doctor_id' => $prescription->doctor->id])
 				</div>
 			</div>
 	      </div>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Feedback;
+use App\DoctorMetadata;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class FeedbackController extends Controller
+class FeedbacksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,9 +35,16 @@ class FeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, DoctorMetadata $doctor)
     {
-        //
+        $feedback = new Feedback;
+        $feedback->feedback = $request->feedback;
+        $feedback->patient_id = Auth::user()->patient->id;
+
+        $doctor->feedbacks()->save($feedback);
+
+        $request->session()->flash('status', 'Task was successful!');
+        return back();
     }
 
     /**

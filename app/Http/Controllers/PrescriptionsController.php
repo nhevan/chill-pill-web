@@ -55,6 +55,9 @@ class PrescriptionsController extends Controller
      */
     public function show(Prescription $prescription)
     {
+        if (Auth::user()->user_type_id == 1) {
+            return view('patient.view-prescription', ['prescription' => $prescription]);
+        }
         return view('doctor.view-prescription', ['prescription' => $prescription]);
     }
 

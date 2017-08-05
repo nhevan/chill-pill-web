@@ -94,7 +94,7 @@ class DoctorsController extends Controller
 
     public function feedbacks()
     {
-        $feedbacks = Feedback::where('doctor_id', Auth::user()->doctor->id)->get();
+        $feedbacks = Feedback::where('doctor_id', Auth::user()->doctor->id)->orderBy('created_at', 'DESC')->get();
         
         return view('feedbacks', ['feedbacks' => $feedbacks]);
     }

@@ -42,6 +42,8 @@ Route::middleware('auth')->post('/prescription/{patient}', 'PrescriptionsControl
 Route::middleware('auth')->get('/medicine/add/{prescription}', 'MedicinesController@create')->name('medicine.show-add');
 Route::middleware('auth')->post('/medicine/add/{prescription}', 'MedicinesController@store')->name('medicine.add');
 
+Route::middleware('auth')->post('/feedback/add/{doctor}', 'FeedbacksController@store')->name('feedback.add');
+
 
 Route::get('/test-pusher', 'HomeController@viewControls')->name('viewControls');
 Route::get('/test-dose', 'HomeController@testDose')->name('testDose');

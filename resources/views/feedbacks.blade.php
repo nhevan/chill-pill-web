@@ -6,7 +6,12 @@
 		<ul class="collapsible" data-collapsible="accordion">
 			@foreach ($feedbacks as $feedback)
 			    <li>
-			      <div class="collapsible-header teal">{{ $feedback->patient->user->name }}</div>
+			      <div class="collapsible-header teal">
+			      	<span style="width: 100%">
+				      	<span class="left">{{ $feedback->patient->user->name }}</span>
+				      	<span class="right"><small>posted on {{ Carbon\Carbon::parse($feedback->created_at)->format('M j\' y') }}</small></span>
+			      	</span>
+			      </div>
 			      <div class="collapsible-body"><span>{{ $feedback->feedback }}</span></div>
 			    </li>
 			@endforeach
@@ -18,6 +23,6 @@
 	<script>
 		$(document).ready(function(){
 		    $('.collapsible').collapsible();
-		  });
+		});
 	</script>
 @endpush
