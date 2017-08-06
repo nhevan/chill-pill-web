@@ -57,6 +57,42 @@ class PatientsController extends ApiController
     	return view('patient.settings', ['patient' => Auth::user()->patient]);
     }
 
+    public function doses()
+    {
+    	$medicine_bag = $this->getAllMedcines();
+    	$filtered_medicines = $this->filterMedicines($medicine_bag);
+
+    	return view('patient.doses', ['medicines' => $filtered_medicines]);
+    }
+
+    public function getAllMedcines()
+    {
+    	$medicine_bag = Auth::user()->patient->prescriptions->map(function($prescription){
+    					if (sizeof($prescription->medicines)) {
+    						return $prescription->medicines;
+    					}
+			    	});
+
+    	$merged = $this->mergeMedicinesFromAllPrescriptions($medicine_bag);
+
+    	return $merged;
+    }
+
+    public function mergeMedicinesFromAllPrescriptions($medicine_bag)
+    {
+    	$merged = collect();
+    	$medicine_bag->filter()->each(function($medicine) use ($merged){
+    		$merged->push($medicine);
+    	});
+
+    	return $merged;
+    }
+
+    public function filterMedicines($medicine_bag)
+    {
+    	return $medicine_bag->flatten(1)->unique('name');
+    }
+
     public function updateMealtime(Request $request)
     {
     	$meal_times = [

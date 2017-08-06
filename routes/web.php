@@ -28,6 +28,7 @@ Route::middleware('auth')->post('/update-patient-info', 'PatientsController@upda
 Route::middleware('auth')->get('/my-prescriptions', 'PatientsController@prescriptions')->name('patient.prescriptions');
 Route::middleware('auth')->get('/settings', 'PatientsController@settings')->name('patient.settings');
 Route::middleware('auth')->post('/update-mealtime', 'PatientsController@updateMealtime')->name('patient.update-mealtime');
+Route::middleware('auth')->get('/doses', 'PatientsController@doses')->name('patient.doses');
 
 Route::middleware('auth')->get('/doctor-dashboard', 'DoctorsController@dashboard')->name('doctor-dashboard');
 Route::middleware('auth')->get('/doctor/update/', 'DoctorsController@edit')->name('show-doctor-update-page');
