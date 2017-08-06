@@ -61,8 +61,30 @@ class PatientsController extends ApiController
     {
     	$medicine_bag = $this->getAllMedcines();
     	$filtered_medicines = $this->filterMedicines($medicine_bag);
+    	$medicine_with_cell_no = $this->findCellNumbers($filtered_medicines);
 
-    	return view('patient.doses', ['medicines' => $filtered_medicines]);
+    	return view('patient.doses', ['medicines' => $filtered_medicines, 'patient' => Auth::user()->patient]);
+    }
+
+    public function findCellNumbers($filtered_medicines)
+    {
+    	$patient = Auth::user()->patient;
+
+    	$merged = collect();
+    	$filtered_medicines->each(function($medicine) use ($merged, $patient){
+    		if ($patient->cell1 == $medicine["name"]) $medicine["cell_number"] = 1;
+    		if ($patient->cell2 == $medicine["name"]) $medicine["cell_number"] = 2;
+    		if ($patient->cell3 == $medicine["name"]) $medicine["cell_number"] = 3;
+    		if ($patient->cell4 == $medicine["name"]) $medicine["cell_number"] = 4;
+    		if ($patient->cell5 == $medicine["name"]) $medicine["cell_number"] = 5;
+    		if ($patient->cell6 == $medicine["name"]) $medicine["cell_number"] = 6;
+    		if ($patient->cell7 == $medicine["name"]) $medicine["cell_number"] = 7;
+    		if ($patient->cell8 == $medicine["name"]) $medicine["cell_number"] = 8;
+    		if ($patient->cell9 == $medicine["name"]) $medicine["cell_number"] = 9;
+    		$merged->push($medicine);
+    	});
+
+    	return $merged;
     }
 
     public function getAllMedcines()
