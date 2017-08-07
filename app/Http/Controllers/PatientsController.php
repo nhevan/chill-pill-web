@@ -54,7 +54,11 @@ class PatientsController extends ApiController
 
     public function settings()
     {
-    	return view('patient.settings', ['patient' => Auth::user()->patient]);
+        $medicine_bag = $this->getAllMedcines();
+        $filtered_medicines = $this->filterMedicines($medicine_bag);
+        $medicine_with_cell_no = $this->findCellNumbers($filtered_medicines);
+
+    	return view('patient.settings', ['patient' => Auth::user()->patient, 'medicines' => $medicine_with_cell_no]);
     }
 
     public function doses()
@@ -63,7 +67,17 @@ class PatientsController extends ApiController
     	$filtered_medicines = $this->filterMedicines($medicine_bag);
     	$medicine_with_cell_no = $this->findCellNumbers($filtered_medicines);
 
-    	return view('patient.doses', ['medicines' => $filtered_medicines, 'patient' => Auth::user()->patient]);
+    	return view('patient.doses', ['medicines' => $medicine_with_cell_no, 'patient' => Auth::user()->patient]);
+    }
+
+    public function assignCells(Request $request)
+    {
+        $patient = Auth::user()->patient;
+
+        $patient->fill($request->except('action'));
+        $patient->save();
+        
+        return back();
     }
 
     public function findCellNumbers($filtered_medicines)
