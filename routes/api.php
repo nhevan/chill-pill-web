@@ -17,5 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('api')->get('/test-get-current-dose', 'ApiController@testGetCurrentDose');
 Route::middleware('api')->get('/get-current-dose', 'ApiController@getCurrentDose');
 
