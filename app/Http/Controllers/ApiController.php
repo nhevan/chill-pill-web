@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\TestPin;
 use Carbon\Carbon;
 use App\PatientMetadata;
+use App\Mail\MissedDoseEmail;
+use Illuminate\Support\Facades\Mail;
 
 class ApiController extends Controller
 {
@@ -57,6 +59,19 @@ class ApiController extends Controller
         });
 
         return $this->sendCurrentDosePush($current_dose_medicines->flatten(), $next_doze_time);
+    }
+
+    public function sendMailToEmergencyEmail()
+    {
+        $patient = PatientMetadata::find(1);
+
+        try {
+            Mail::to($patient->emergency_contact_email)->queue(new MissedDoseEmail($patient));
+        } catch (Exception $e) {
+            return ['message' => "Something went wrong"];            
+        }
+
+        return ['message' => "Email successfully sent to emergency contact"];
     }
 
     public function sendCurrentDosePush($current_dose_medicines, $meal_time)
